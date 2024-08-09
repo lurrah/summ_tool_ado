@@ -1,0 +1,1 @@
+module.exports = { prompt: `Provide a succinct summary paragraph about the tasks from this iteration. Some tasks are children of others, indicated by tabs. After the paragraph, list some bullet points highlighting only essential details from the summary (place the bullet points within &lt;li&gt;&lt;/li&gt; tags). If a task has no description, use the titles for context.\n`}

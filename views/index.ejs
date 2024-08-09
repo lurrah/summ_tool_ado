@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%=title %></title>
+    
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.it.ucf.edu/minerva/1.0.0/css/minerva.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.6.0/pagination.min.css">
+    <link rel="shortcut icon" href="https://cdn.it.ucf.edu/minerva/1.0.0/images/favicon_black.png" />
+    <link rel="apple-touch-icon" href="https://cdn.it.ucf.edu/minerva/1.0.0/images/apple-touch-icon.png" />
+    <link rel="stylesheet" href="stylesheets/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <!-- ucf bar -->
+    <div id="ucfhb" class="preload" role="complementary" aria-label="University of Central Florida navbar">
+      <div id="ucfhb-inner" style="display: none;">
+        <div id="ucfhb-left">
+          <div id="ucfhb-logo">
+            <a href="https://www.ucf.edu" aria-label="University of Central Florida"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- header -->
+    <header>
+      <nav class="navbar navbar-dark navbar-expand-lg slim-nav slim-nav-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/">ADO Summarization Tool</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+            span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="main-nav">
+            <ul class="navbar-nav ml-md-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/users/logout">Log Out</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+      	<!-- content area -->
+        <div class="container-fluid site-content" id="content">
+          <div class="container">
+            <h1>ADO Work Items</h1>
+            <hr />
+            
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">ADO data</li>
+            </ol>
+
+            <label for="proj">Choose a Project:</label>
+            <select name="proj" id="proj-select">
+              <option value="" disabled selected>Select a project</option>
+            </select>
+
+            <!-- for team -->
+            <label for="team">Choose a Team:</label>
+            <select name="team" id="team-select">
+              <option value="" disabled selected>Select a team</option>
+              <!--<option value="Interns">Interns</option>
+              <option value="Digital%20Solutions">Digital Solutions</option>-->
+            </select>
+
+            <!-- for sprints -->
+            <label for="sprint">Choose a Sprint:</label>
+            <select name="sprint" id="sprint-select">
+              <option value="" disabled selected>Select a sprint</option>
+            </select>
+            
+            <button id="regenerate" hidden>Regenerate</button>
+            <button id="generate">Generate</button>
+
+            <br>
+            <br>
+
+            <div id="sprintInfo"><!-- summary populates here--></div>
+            <div id="pagination-container"></div>
+            <br><br>
+
+            <button id="show-prompt" hidden>Show Prompt</button>
+
+            <div id="modal" class="modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="promptDiv"></div>
+              </div>
+            </div>
+            <br><br>
+
+            <a href="/azure_auth">Register your Azure DevOps PAT</a>
+            <br><br>
+          </div>
+
+
+          <footer class="site-footer">
+            <div class="container">
+            <div class="row">
+            <div class="col-md-6 col-12">
+            <p class="mb-0">
+            Designed, Developed and Supported by
+            </p>
+            <h5 class="mb-3">
+            UCF IT App<span class="d-lg-inline d-md-none">lication</span> Development
+            </h5>
+            <p>
+            &copy; <a href="https://www.ucf.edu/">University of Central Florida</a> |
+            <b><a href="https://ucf.service-now.com/ucfit?id=sc_cat_item&amp;sys_id=ae7581c4dbb5a20096b0fb37bf961954" class="external">Report Issue</a></b>
+            </p>
+            </div>
+            <div class="col-md-6 col-12 text-md-right text-sm-left">
+            <h5 class="mb-md-3 mb-sm-0">
+            <a href="/">Summarization Tool</a>
+            </h5>
+            <p>
+            Current Version: <b>v0</b><br />
+            </p>
+            </div>
+            </div>
+            </div>
+            </footer>
+
+      <!-- js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.it.ucf.edu/minerva/1.0.0/js/internal-header.js"></script>
+    <script src="https://cdn.it.ucf.edu/minerva/1.0.0/js/minerva.js"></script>
+    <script src="https://cdn.it.ucf.edu/assets/scrollsaver-3.min.js "></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.6.0/pagination.js"></script>
+    <script src="/scripts/index_script.js"></script>
+  </body>
+</html>
+
